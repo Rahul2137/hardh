@@ -1,0 +1,59 @@
+================================================================================
+AUDIT LOG
+================================================================================
+[2026-04-20T22:19:33.799136] sheets_write | parent:P006 | Channel:  | Status: success
+  Details: Status: opt_out
+
+[2026-04-20T22:19:33.777601] voice_call_completed | parent:P006 | Channel: voice | Status: opt_out
+  Details: Collected 0 fields. Confidence: 0.95
+
+[2026-04-20T22:19:33.251925] voice_call_started | parent:P006 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0106
+
+[2026-04-20T22:19:33.231769] sheets_write | parent:P005 | Channel:  | Status: success
+  Details: Status: wrong_number
+
+[2026-04-20T22:19:33.219308] voice_call_completed | parent:P005 | Channel: voice | Status: wrong_number
+  Details: Collected 0 fields. Confidence: 0.95
+
+[2026-04-20T22:19:32.697615] voice_call_started | parent:P005 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0105
+
+[2026-04-20T22:19:32.675038] sheets_write | parent:P004 | Channel:  | Status: success
+  Details: Status: callback_requested
+
+[2026-04-20T22:19:32.659864] voice_call_completed | parent:P004 | Channel: voice | Status: callback_requested
+  Details: Collected 0 fields. Confidence: 0.85
+
+[2026-04-20T22:19:32.133409] voice_call_started | parent:P004 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0104
+
+[2026-04-20T22:19:32.114008] sheets_write | parent:P003 | Channel:  | Status: success
+  Details: Status: partial
+
+[2026-04-20T22:19:32.097626] voice_call_completed | parent:P003 | Channel: voice | Status: partial
+  Details: Collected 1 fields. Confidence: 0.60
+
+[2026-04-20T22:19:31.573151] voice_call_started | parent:P003 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0103
+
+[2026-04-20T22:19:31.546969] sheets_write | parent:P002 | Channel:  | Status: success
+  Details: Status: unreachable
+
+[2026-04-20T22:19:31.532193] whatsapp_sent | parent:P002 | Channel: whatsapp | Status: sent
+  Details: Message ID: wamid.822b78843ef647a3983b
+
+[2026-04-20T22:19:31.509317] voice_call_no_answer | parent:P002 | Channel: voice | Status: unreachable
+  Details: Call went unanswered after 30 seconds
+
+[2026-04-20T22:19:30.987652] voice_call_started | parent:P002 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0102
+
+[2026-04-20T22:19:30.956694] sheets_write | parent:P001 | Channel:  | Status: success
+  Details: Status: completed
+
+[2026-04-20T22:19:30.935619] voice_call_completed | parent:P001 | Channel: voice | Status: completed
+  Details: Collected 6 fields. Confidence: 0.95
+
+[2026-04-20T22:19:30.412232] voice_call_started | parent:P001 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0101
