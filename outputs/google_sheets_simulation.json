@@ -1,0 +1,136 @@
+{
+  "Parent Outreach": [
+    [
+      "Parent ID",
+      "Parent Name",
+      "Student Name",
+      "Collected Fields",
+      "Outreach Status",
+      "Confidence",
+      "Last Action Taken",
+      "Next Recommended Action",
+      "Timestamp",
+      "Attempt Number",
+      "Channel",
+      "Validation Flags",
+      "Notes"
+    ],
+    [
+      "P001",
+      "Sarah Johnson",
+      "Emma Johnson",
+      "email=sarah.johnson@gmail.com; school_name=Lincoln Elementary School; preferred_weekday=Wednesday; preferred_time=4:30 pm; mobile_phone=+1-555-8801; notes=Also, emma has a peanut allergy — please note that down",
+      "completed",
+      "0.95",
+      "voice_call_completed",
+      "none",
+      "2026-04-20T22:19:30.952315",
+      "1",
+      "voice",
+      "none",
+      "Thank you so much! I have all the information I need. We'll be in touch about the group event. Have a wonderful day!"
+    ],
+    [
+      "P002",
+      "Michael Chen",
+      "Lily Chen",
+      "",
+      "unreachable",
+      "1.00",
+      "whatsapp_followup_sent",
+      "wait_for_whatsapp_reply_then_retry_call",
+      "2026-04-20T22:19:31.542513",
+      "1",
+      "whatsapp",
+      "none",
+      "WhatsApp sent: Hi Michael Chen! 👋 This is Bright Futures Academy. We tried reaching you about Lily Chen's upcoming ..."
+    ],
+    [
+      "P003",
+      "Priya Patel",
+      "Arjun Patel",
+      "mobile_phone=+1-555-7703",
+      "partial",
+      "0.60",
+      "voice_call_partial",
+      "schedule_follow_up_call",
+      "2026-04-20T22:19:32.110265",
+      "1",
+      "voice",
+      "none",
+      "Call ended abruptly. Collected 1 of 5 fields."
+    ],
+    [
+      "P004",
+      "James Wilson",
+      "Tyler Wilson",
+      "",
+      "callback_requested",
+      "0.85",
+      "voice_call_callback",
+      "schedule_callback_at_requested_time",
+      "2026-04-20T22:19:32.670141",
+      "1",
+      "voice",
+      "none",
+      "No problem at all! When would be a good time to call you back?"
+    ],
+    [
+      "P005",
+      "Lisa Rodriguez",
+      "Sofia Rodriguez",
+      "",
+      "wrong_number",
+      "0.95",
+      "voice_call_wrong_number",
+      "verify_phone_number_manually",
+      "2026-04-20T22:19:33.227909",
+      "1",
+      "voice",
+      "none",
+      "I apologize for the confusion. Thank you for letting me know. Have a good day!"
+    ],
+    [
+      "P006",
+      "David Kim",
+      "Jason Kim",
+      "",
+      "opt_out",
+      "0.95",
+      "voice_call_opt_out",
+      "remove_from_outreach_list",
+      "2026-04-20T22:19:33.794865",
+      "1",
+      "voice",
+      "none",
+      "I completely understand. We'll remove you from our contact list. Sorry for the inconvenience. Goodbye!"
+    ]
+  ],
+  "WhatsApp Log": [
+    [
+      "Timestamp",
+      "Parent ID",
+      "Parent Name",
+      "Phone",
+      "Message",
+      "Status"
+    ],
+    [
+      "2026-04-20T22:19:31.528948",
+      "P002",
+      "Michael Chen",
+      "+1-555-0102",
+      "Hi Michael Chen! 👋 This is Bright Futures Academy. We tried reaching you about Lily Chen's upcoming group event. Could you please share your email, mobile phone, preferred weekday? Reply here or call us back at your convenience. Thank you! 🙏",
+      "sent"
+    ]
+  ],
+  "Audit Log": [
+    [
+      "Timestamp",
+      "Action",
+      "Parent ID",
+      "Details",
+      "Status"
+    ]
+  ]
+}
