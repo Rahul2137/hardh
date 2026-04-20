@@ -1,6 +1,117 @@
 ================================================================================
 AUDIT LOG
 ================================================================================
+[2026-04-21T01:01:50.226122] outreach_skipped | parent:P006 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:50.218874] outreach_skipped | parent:P005 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:50.211104] outreach_skipped | parent:P004 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:50.200829] outreach_skipped | parent:P003 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:50.189823] outreach_skipped | parent:P002 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:50.179099] outreach_skipped | parent:P001 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.987094] outreach_skipped | parent:P002 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.979219] outreach_skipped | parent:P001 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.962578] outreach_skipped | parent:P006 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.954365] outreach_skipped | parent:P005 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.947243] outreach_skipped | parent:P004 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.938160] outreach_skipped | parent:P003 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.928554] outreach_skipped | parent:P002 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:01:40.921049] outreach_skipped | parent:P001 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:00:26.967160] outreach_skipped | parent:P002 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:00:26.956472] outreach_skipped | parent:P001 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-21T01:00:26.929521] sheets_write | parent:P006 | Channel:  | Status: success
+  Details: Status: opt_out
+
+[2026-04-21T01:00:26.919776] voice_call_completed | parent:P006 | Channel: voice | Status: opt_out
+  Details: Collected 0 fields. Confidence: 0.95
+
+[2026-04-21T01:00:26.401795] voice_call_started | parent:P006 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0106
+
+[2026-04-21T01:00:26.394245] sheets_write | parent:P005 | Channel:  | Status: success
+  Details: Status: wrong_number
+
+[2026-04-21T01:00:26.390255] voice_call_completed | parent:P005 | Channel: voice | Status: wrong_number
+  Details: Collected 0 fields. Confidence: 0.95
+
+[2026-04-21T01:00:25.874354] voice_call_started | parent:P005 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0105
+
+[2026-04-21T01:00:25.843485] sheets_write | parent:P004 | Channel:  | Status: success
+  Details: Status: callback_requested
+
+[2026-04-21T01:00:25.831488] voice_call_completed | parent:P004 | Channel: voice | Status: callback_requested
+  Details: Collected 0 fields. Confidence: 0.85
+
+[2026-04-21T01:00:25.318414] voice_call_started | parent:P004 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0104
+
+[2026-04-21T01:00:25.305136] sheets_write | parent:P003 | Channel:  | Status: success
+  Details: Status: partial
+
+[2026-04-21T01:00:25.299105] voice_call_completed | parent:P003 | Channel: voice | Status: partial
+  Details: Collected 1 fields. Confidence: 0.60
+
+[2026-04-21T01:00:24.779512] voice_call_started | parent:P003 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0103
+
+[2026-04-21T01:00:24.767107] sheets_write | parent:P002 | Channel:  | Status: success
+  Details: Status: unreachable
+
+[2026-04-21T01:00:24.761611] whatsapp_sent | parent:P002 | Channel: whatsapp | Status: sent
+  Details: Message ID: wamid.1a9b7cfcebdf4dd9a3f9
+
+[2026-04-21T01:00:24.752170] voice_call_no_answer | parent:P002 | Channel: voice | Status: unreachable
+  Details: Call went unanswered after 30 seconds
+
+[2026-04-21T01:00:24.233258] voice_call_started | parent:P002 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0102
+
+[2026-04-21T01:00:24.223128] sheets_write | parent:P001 | Channel:  | Status: success
+  Details: Status: completed
+
+[2026-04-21T01:00:24.219708] voice_call_completed | parent:P001 | Channel: voice | Status: completed
+  Details: Collected 6 fields. Confidence: 0.95
+
+[2026-04-21T01:00:23.700017] voice_call_started | parent:P001 | Channel: voice | Status: in_progress
+  Details: Calling +1-555-0101
+
+[2026-04-20T22:19:33.843474] outreach_skipped | parent:P002 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
+[2026-04-20T22:19:33.829359] outreach_skipped | parent:P001 | Channel: voice | Status: duplicate
+  Details: Idempotency check failed — already processed today
+
 [2026-04-20T22:19:33.799136] sheets_write | parent:P006 | Channel:  | Status: success
   Details: Status: opt_out
 

@@ -1,0 +1,30 @@
+[
+  {
+    "parent_id": "P001",
+    "parent_name": "Sarah Johnson",
+    "student_name": "Emma Johnson",
+    "collected_fields": {},
+    "outreach_status": "human_review",
+    "confidence": 0.2,
+    "last_action_taken": "callback_requested",
+    "next_recommended_action": "assign_to_human",
+    "timestamp": "2026-04-21T02:50:17.152250",
+    "channel": "whatsapp",
+    "validation_flags": [],
+    "notes": "Low confidence (0.20). Routing to human review.",
+    "conversation_log": [
+      {
+        "role": "agent",
+        "content": "Hi Sarah Johnson! This is Alex from Bright Futures Academy. We're getting ready to schedule a group event for Emma Johnson and need a few details from you.\n\nCould you please share your email and mobile phone?\n\nThank you!"
+      },
+      {
+        "role": "parent",
+        "content": "No i won't"
+      },
+      {
+        "role": "agent",
+        "content": "I'm having some trouble. Let me get back to you shortly. Thank you for your patience!"
+      }
+    ]
+  }
+]

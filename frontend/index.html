@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Outreach Dashboard — Bright Futures Academy</title>
+    <meta name="description" content="AI-powered parent outreach dashboard for collecting student information">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <span class="logo-icon">🎓</span>
+                <div>
+                    <h1>Bright Futures Academy</h1>
+                    <span class="subtitle">Parent Outreach Dashboard</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-daily" onclick="runDailyJob()" id="dailyJobBtn">
+                <span class="btn-icon">⚡</span> Run Daily Check
+            </button>
+            <div class="connection-badge" id="connectionBadge">
+                <span class="dot dot-green"></span> Connected
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Strip -->
+    <section class="stats-strip" id="statsStrip">
+        <div class="stat-card">
+            <div class="stat-number" id="statTotal">-</div>
+            <div class="stat-label">Total Students</div>
+        </div>
+        <div class="stat-card stat-completed">
+            <div class="stat-number" id="statCompleted">-</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card stat-pending">
+            <div class="stat-number" id="statPending">-</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card stat-partial">
+            <div class="stat-number" id="statPartial">-</div>
+            <div class="stat-label">Partial</div>
+        </div>
+        <div class="stat-card stat-review">
+            <div class="stat-number" id="statReview">-</div>
+            <div class="stat-label">Human Review</div>
+        </div>
+        <div class="stat-card stat-rate">
+            <div class="stat-number" id="statRate">-</div>
+            <div class="stat-label">Completion Rate</div>
+        </div>
+    </section>
+
+    <!-- Tab Navigation -->
+    <nav class="tabs">
+        <button class="tab active" data-tab="students" onclick="switchTab('students')">
+            📋 Student Records
+        </button>
+        <button class="tab" data-tab="review" onclick="switchTab('review')">
+            🔍 Human Review <span class="badge" id="reviewBadge">0</span>
+        </button>
+        <button class="tab" data-tab="logs" onclick="switchTab('logs')">
+            💬 Activity Log
+        </button>
+    </nav>
+
+    <!-- Students Table Tab -->
+    <section class="tab-content active" id="tab-students">
+        <div class="table-controls">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search students, parents..." 
+                       oninput="filterStudents(this.value)" id="searchInput">
+            </div>
+            <div class="filter-pills">
+                <button class="pill active" onclick="setFilter('all')">All</button>
+                <button class="pill" onclick="setFilter('pending')">Pending</button>
+                <button class="pill" onclick="setFilter('partial')">Partial</button>
+                <button class="pill" onclick="setFilter('completed')">Completed</button>
+                <button class="pill" onclick="setFilter('human_review')">Review</button>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="student-table" id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Grade</th>
+                        <th>Parent</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>School</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Notes</th>
+                        <th>Status</th>
+                        <th>Tries</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    <tr><td colspan="12" class="loading-cell">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Human Review Tab -->
+    <section class="tab-content" id="tab-review">
+        <div class="review-list" id="reviewList">
+            <div class="loading-cell">Loading...</div>
+        </div>
+    </section>
+
+    <!-- Activity Log Tab -->
+    <section class="tab-content" id="tab-logs">
+        <div class="log-list" id="logList">
+            <div class="empty-state">
+                <span class="empty-icon">📝</span>
+                <p>Activity logs will appear here as outreach conversations happen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conversation Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle">Conversation</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

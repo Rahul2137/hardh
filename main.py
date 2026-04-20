@@ -233,21 +233,121 @@ def start_server():
 
 
 # ──────────────────────────────────────────────────
+#  WhatsApp Real Conversation Mode
+# ──────────────────────────────────────────────────
+
+def run_whatsapp_conversation(parent_id: str = "P001"):
+    """Run a real WhatsApp conversation with a parent via Twilio."""
+    from agents.whatsapp_conversation import WhatsAppConversationAgent
+    import json as _json
+
+    print("\n" + "=" * 60)
+    print("  REAL WHATSAPP CONVERSATION MODE")
+    print("=" * 60)
+    print(f"  Twilio Number: {config.TWILIO_WHATSAPP_NUMBER}")
+    print(f"  Target Phone: {config.YOUR_PHONE_NUMBER}")
+    print(f"  OpenAI Model: {config.OPENAI_MODEL}")
+    print(f"  Poll Interval: {config.WHATSAPP_POLL_INTERVAL}s")
+    print(f"  Timeout: {config.WHATSAPP_TIMEOUT}s")
+    print()
+
+    # Validate Twilio config
+    if not config.TWILIO_ACCOUNT_SID or not config.TWILIO_AUTH_TOKEN:
+        print("ERROR: TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN must be set in .env")
+        return
+    if not config.OPENAI_API_KEY:
+        print("ERROR: OPENAI_API_KEY must be set in .env")
+        return
+
+    agent = WhatsAppConversationAgent()
+
+    # Load parent data
+    from agents.parent_outreach_agent import ParentOutreachAgent
+    loader = ParentOutreachAgent()
+    parents = loader.load_parents()
+
+    parent = next((p for p in parents if p.parent_id == parent_id), None)
+    if not parent:
+        print(f"ERROR: Parent {parent_id} not found in data/parents.json")
+        print(f"Available: {[p.parent_id for p in parents]}")
+        return
+
+    print(f"  Parent: {parent.parent_name}")
+    print(f"  Student: {parent.student_name}")
+    print(f"  Missing fields: {parent.get_missing_fields()}")
+    print(f"  Known fields: {parent.get_known_fields()}")
+    print()
+    print("  Starting conversation... Check your WhatsApp!")
+    print("=" * 60)
+
+    # Run the conversation (blocking)
+    result = agent.run_conversation(parent)
+
+    # Print final result
+    print("\n" + "=" * 60)
+    print("  CONVERSATION RESULT")
+    print("=" * 60)
+    print(f"  Status: {result.outreach_status.value}")
+    print(f"  Confidence: {result.confidence:.2f}")
+    print(f"  Fields collected: {_json.dumps(result.collected_fields, indent=2)}")
+    print(f"  Validation flags: {result.validation_flags}")
+    print(f"  Notes: {result.notes}")
+    print(f"  Next action: {result.next_recommended_action}")
+    print()
+
+    # Print conversation log
+    print("  CONVERSATION LOG:")
+    print("  " + "-" * 50)
+    for msg in result.conversation_log:
+        role = "AGENT" if msg["role"] == "agent" else "PARENT"
+        print(f"  [{role}]: {msg['content']}")
+    print("=" * 60)
+
+    # Save output
+    agent.save_conversation_output()
+    print(f"\n  Results saved to {config.OUTPUTS_DIR}/whatsapp_conversation_results.json")
+
+
+# ──────────────────────────────────────────────────
 #  CLI Entry Point
 # ──────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="AI Outreach System")
     parser.add_argument("--server", action="store_true", help="Start FastAPI server")
+    parser.add_argument("--dashboard", action="store_true", help="Start Dashboard UI + API server")
     parser.add_argument("--scenario", type=int, help="Run a specific scenario (1-6)")
     parser.add_argument("--production", action="store_true", help="Run in production mode")
+    parser.add_argument(
+        "--whatsapp", action="store_true",
+        help="Run real WhatsApp conversation via Twilio"
+    )
+    parser.add_argument(
+        "--parent-id", type=str, default="P001",
+        help="Parent ID to contact (default: P001). Use with --whatsapp"
+    )
+    parser.add_argument("--port", type=int, default=8000, help="Server port (default: 8000)")
     args = parser.parse_args()
 
     if args.production:
         config.SIMULATION_MODE = False
         config.validate()
 
-    if args.server:
+    if args.dashboard:
+        import uvicorn
+        from dashboard_api import app
+        print("\n" + "=" * 60)
+        print("  PARENT OUTREACH DASHBOARD")
+        print("=" * 60)
+        print(f"  Open in browser: http://localhost:{args.port}")
+        print(f"  API docs: http://localhost:{args.port}/docs")
+        print(f"  Students data: data/students.json")
+        print(f"  Twilio configured: {'Yes' if config.TWILIO_ACCOUNT_SID else 'No'}")
+        print("=" * 60 + "\n")
+        uvicorn.run(app, host="0.0.0.0", port=args.port, log_level="info")
+    elif args.whatsapp:
+        run_whatsapp_conversation(parent_id=args.parent_id)
+    elif args.server:
         start_server()
     elif args.scenario:
         asyncio.run(run_single_scenario(args.scenario))

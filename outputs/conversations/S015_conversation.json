@@ -1,0 +1,24 @@
+{
+  "student_id": "S015",
+  "timestamp": "2026-04-21T03:24:10.491673",
+  "result": {
+    "status": "human_review",
+    "confidence": 0.4,
+    "collected_fields": {},
+    "notes": "Escalated to human. Collected 0/4 fields."
+  },
+  "conversation": [
+    {
+      "role": "agent",
+      "content": "Hi Thanh Nguyen! 👋 This is Alex from Bright Futures Academy.\n\nWe're setting up a group event for Ava Nguyen and need a few quick details from you. It'll only take a minute!"
+    },
+    {
+      "role": "agent",
+      "content": "Could you please share your email address? 📧"
+    },
+    {
+      "role": "agent",
+      "content": "Thank you for your patience! 🙏 I'm having a little difficulty — let me connect you with one of our team members who will reach out shortly. Have a great day!"
+    }
+  ]
+}

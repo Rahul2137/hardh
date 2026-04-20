@@ -1,107 +1,14 @@
 
 ================================================================================
 PARENT OUTREACH SUMMARY REPORT
-Generated: 2026-04-20T22:19:33.811620
+Generated: 2026-04-21T01:01:50.232168
 ================================================================================
-
-────────────────────────────────────────────────────────────
-Scenario 1: Sarah Johnson (Student: Emma Johnson)
-────────────────────────────────────────────────────────────
-  Status:       completed
-  Channel:      voice
-  Confidence:   0.95
-  Collected:    {
-  "email": "sarah.johnson@gmail.com",
-  "school_name": "Lincoln Elementary School",
-  "preferred_weekday": "Wednesday",
-  "preferred_time": "4:30 pm",
-  "mobile_phone": "+1-555-8801",
-  "notes": "Also, emma has a peanut allergy \u2014 please note that down"
-}
-  Flags:        None
-  Last Action:  voice_call_completed
-  Next Action:  none
-  Timestamp:    2026-04-20T22:19:30.952315
-  Notes:        Thank you so much! I have all the information I need. We'll be in touch about the group event. Have 
-
-────────────────────────────────────────────────────────────
-Scenario 2: Michael Chen (Student: Lily Chen)
-────────────────────────────────────────────────────────────
-  Status:       unreachable
-  Channel:      whatsapp
-  Confidence:   1.00
-  Collected:    None
-  Flags:        None
-  Last Action:  whatsapp_followup_sent
-  Next Action:  wait_for_whatsapp_reply_then_retry_call
-  Timestamp:    2026-04-20T22:19:31.542513
-  Notes:        WhatsApp sent: Hi Michael Chen! 👋 This is Bright Futures Academy. We tried reaching you about Lily C
-
-────────────────────────────────────────────────────────────
-Scenario 3: Priya Patel (Student: Arjun Patel)
-────────────────────────────────────────────────────────────
-  Status:       partial
-  Channel:      voice
-  Confidence:   0.60
-  Collected:    {
-  "mobile_phone": "+1-555-7703"
-}
-  Flags:        None
-  Last Action:  voice_call_partial
-  Next Action:  schedule_follow_up_call
-  Timestamp:    2026-04-20T22:19:32.110265
-  Notes:        Call ended abruptly. Collected 1 of 5 fields.
-
-────────────────────────────────────────────────────────────
-Scenario 4: James Wilson (Student: Tyler Wilson)
-────────────────────────────────────────────────────────────
-  Status:       callback_requested
-  Channel:      voice
-  Confidence:   0.85
-  Collected:    None
-  Flags:        None
-  Last Action:  voice_call_callback
-  Next Action:  schedule_callback_at_requested_time
-  Timestamp:    2026-04-20T22:19:32.670141
-  Notes:        No problem at all! When would be a good time to call you back?
-
-────────────────────────────────────────────────────────────
-Scenario 5: Lisa Rodriguez (Student: Sofia Rodriguez)
-────────────────────────────────────────────────────────────
-  Status:       wrong_number
-  Channel:      voice
-  Confidence:   0.95
-  Collected:    None
-  Flags:        None
-  Last Action:  voice_call_wrong_number
-  Next Action:  verify_phone_number_manually
-  Timestamp:    2026-04-20T22:19:33.227909
-  Notes:        I apologize for the confusion. Thank you for letting me know. Have a good day!
-
-────────────────────────────────────────────────────────────
-Scenario 6: David Kim (Student: Jason Kim)
-────────────────────────────────────────────────────────────
-  Status:       opt_out
-  Channel:      voice
-  Confidence:   0.95
-  Collected:    None
-  Flags:        None
-  Last Action:  voice_call_opt_out
-  Next Action:  remove_from_outreach_list
-  Timestamp:    2026-04-20T22:19:33.794865
-  Notes:        I completely understand. We'll remove you from our contact list. Sorry for the inconvenience. Goodby
 
 ============================================================
 STATUS DISTRIBUTION
 ============================================================
-  completed                 : 1
-  unreachable               : 1
-  partial                   : 1
-  callback_requested        : 1
-  wrong_number              : 1
-  opt_out                   : 1
 
-  Total Outreach Attempts:  6
-  Google Sheets Rows Written: 6
-  WhatsApp Messages Sent: 1
+  Total Outreach Attempts:  0
+  Google Sheets Rows Written: 0
+  WhatsApp Messages Sent: 0
 ================================================================================

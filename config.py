@@ -27,6 +27,12 @@ class Config:
     # Telegram
     TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN", "")
 
+    # Twilio WhatsApp
+    TWILIO_ACCOUNT_SID: str = os.getenv("TWILIO_ACCOUNT_SID", "")
+    TWILIO_AUTH_TOKEN: str = os.getenv("TWILIO_AUTH_TOKEN", "")
+    TWILIO_WHATSAPP_NUMBER: str = os.getenv("TWILIO_WHATSAPP_NUMBER", "whatsapp:+14155238886")
+    YOUR_PHONE_NUMBER: str = os.getenv("YOUR_PHONE_NUMBER", "")
+
     # Simulation
     SIMULATION_MODE: bool = os.getenv("SIMULATION_MODE", "true").lower() == "true"
 
@@ -41,6 +47,10 @@ class Config:
     # Retry Config
     MAX_RETRIES: int = 3
     RETRY_BACKOFF_BASE: float = 2.0  # seconds
+
+    # WhatsApp Conversation
+    WHATSAPP_POLL_INTERVAL: int = 5   # seconds between polling for new messages
+    WHATSAPP_TIMEOUT: int = 300       # seconds to wait for a reply before giving up
 
     # Paths
     DATA_DIR: Path = PROJECT_ROOT / "data"
