@@ -229,7 +229,7 @@ def start_server():
         logs = agent.audit.get_logs(limit=50)
         return JSONResponse(content={"logs": logs})
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
 
 
 # ──────────────────────────────────────────────────
@@ -344,7 +344,7 @@ def main():
         print(f"  Students data: Google Sheets (Students tab)")
         print(f"  Twilio configured: {'Yes' if config.TWILIO_ACCOUNT_SID else 'No'}")
         print("=" * 60 + "\n")
-        uvicorn.run(app, host="0.0.0.0", port=args.port, log_level="info")
+        uvicorn.run(app, host="127.0.0.1", port=args.port, log_level="info")
     elif args.whatsapp:
         run_whatsapp_conversation(parent_id=args.parent_id)
     elif args.server:

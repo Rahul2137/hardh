@@ -76,7 +76,7 @@ class GoogleSheetsClient:
             self._ensure_worksheets()
 
         except Exception as e:
-            logger.error(f"Google Sheets init failed: {e}")
+            logger.error(f"Google Sheets init failed: {e.__class__.__name__} - {str(e)}")
             logger.warning("Falling back to simulation mode")
             self.simulation_mode = True
             self._init_simulation()
