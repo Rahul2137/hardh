@@ -9,6 +9,7 @@ import logging
 from typing import Optional
 
 from config import config
+from reliability.retry import with_retry
 
 logger = logging.getLogger(__name__)
 
@@ -143,6 +144,7 @@ From: Bright Futures Academy."""
 
         return await self._call_llm(prompt)
 
+    @with_retry(max_retries=3, base_delay=2.0)
     async def _call_llm(self, prompt: str) -> str:
         """Make an actual OpenAI API call."""
         if not self.client:

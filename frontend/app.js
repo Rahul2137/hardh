@@ -297,7 +297,7 @@ function addLogEntry(message) {
 // ─────────────── Formatters ───────────────
 function formatPhone(phone) {
     if (!phone) return '—';
-    return phone.replace('whatsapp:', '').replace(/^\+91/, '+91-');
+    return String(phone).replace('whatsapp:', '').replace(/^\+91/, '+91-');
 }
 
 function formatStatus(status) {
