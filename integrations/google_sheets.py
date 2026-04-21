@@ -22,6 +22,13 @@ PARENT_OUTREACH_HEADERS = OutreachResult.sheet_headers()
 SHEET_PARENT_OUTREACH = "Parent Outreach"
 SHEET_WHATSAPP_LOG = "WhatsApp Log"
 SHEET_AUDIT_LOG = "Audit Log"
+SHEET_STUDENTS = "Students"
+
+STUDENTS_HEADERS = [
+    "student_id", "student_name", "grade", "parent_name", "parent_phone",
+    "parent_email", "school_name", "preferred_weekday", "preferred_time",
+    "notes", "status", "attempts", "last_contact"
+]
 
 
 class GoogleSheetsClient:
@@ -84,6 +91,9 @@ class GoogleSheetsClient:
             SHEET_AUDIT_LOG: [
                 ["Timestamp", "Action", "Parent ID", "Details", "Status"]
             ],
+            SHEET_STUDENTS: [
+                STUDENTS_HEADERS
+            ]
         }
 
     def _ensure_worksheets(self):
@@ -97,6 +107,7 @@ class GoogleSheetsClient:
             (SHEET_PARENT_OUTREACH, PARENT_OUTREACH_HEADERS),
             (SHEET_WHATSAPP_LOG, ["Timestamp", "Parent ID", "Parent Name", "Phone", "Message", "Status"]),
             (SHEET_AUDIT_LOG, ["Timestamp", "Action", "Parent ID", "Details", "Status"]),
+            (SHEET_STUDENTS, STUDENTS_HEADERS),
         ]:
             if sheet_name not in existing:
                 ws = self.spreadsheet.add_worksheet(title=sheet_name, rows=100, cols=20)
@@ -235,6 +246,44 @@ class GoogleSheetsClient:
             logger.error(f"Failed to read outreach results: {e}")
             return []
 
+    def get_all_students(self) -> list[dict]:
+        """Get all students from the Students sheet."""
+        if self.simulation_mode:
+            rows = self._local_data.get(SHEET_STUDENTS, [])
+            if not rows or len(rows) < 2:
+                # If simulation is empty, try loading from local JSON
+                try:
+                    with open(config.DATA_DIR / "students.json", "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                        if data:
+                            self.save_students(data)
+                            return data
+                except Exception:
+                    pass
+                return []
+            
+            headers = rows[0]
+            result = []
+            for row in rows[1:]:
+                # Pad row to match headers
+                padded_row = row + [""] * (len(headers) - len(row))
+                item = dict(zip(headers, padded_row))
+                # Cast integer
+                try:
+                    item["attempts"] = int(item.get("attempts", 0))
+                except (ValueError, TypeError):
+                    item["attempts"] = 0
+                result.append(item)
+            return result
+
+        try:
+            ws = self.spreadsheet.worksheet(SHEET_STUDENTS)
+            records = ws.get_all_records()
+            return records
+        except Exception as e:
+            logger.error(f"Failed to read students: {e}")
+            return []
+
     def get_simulation_data(self) -> dict:
         """Return simulation data for inspection (testing/demo only)."""
         return self._local_data
@@ -264,3 +313,34 @@ class GoogleSheetsClient:
                 logger.info(f"Updated status for {parent_id} to {new_status}")
         except Exception as e:
             logger.error(f"Failed to update status: {e}")
+
+    def save_students(self, students: list[dict]):
+        """Save a list of student dicts to the Students sheet."""
+        if not students:
+            return
+
+        if self.simulation_mode:
+            # Rebuild sheet
+            rows = [STUDENTS_HEADERS]
+            for s in students:
+                row = [str(s.get(h, "")) for h in STUDENTS_HEADERS]
+                rows.append(row)
+            self._local_data[SHEET_STUDENTS] = rows
+            logger.info("[SIM] Saved students to local data")
+            
+            # also save to JSON to persist during simulation
+            with open(config.DATA_DIR / "students.json", "w", encoding="utf-8") as f:
+                json.dump(students, f, indent=2, ensure_ascii=False)
+            return
+
+        try:
+            ws = self.spreadsheet.worksheet(SHEET_STUDENTS)
+            ws.clear()
+            rows = [STUDENTS_HEADERS]
+            for s in students:
+                row = [str(s.get(h, "")) for h in STUDENTS_HEADERS]
+                rows.append(row)
+            ws.update(rows)
+            logger.info(f"Saved {len(students)} students to Google Sheets")
+        except Exception as e:
+            logger.error(f"Failed to save students to sheets: {e}")

@@ -341,7 +341,7 @@ def main():
         print("=" * 60)
         print(f"  Open in browser: http://localhost:{args.port}")
         print(f"  API docs: http://localhost:{args.port}/docs")
-        print(f"  Students data: data/students.json")
+        print(f"  Students data: Google Sheets (Students tab)")
         print(f"  Twilio configured: {'Yes' if config.TWILIO_ACCOUNT_SID else 'No'}")
         print("=" * 60 + "\n")
         uvicorn.run(app, host="0.0.0.0", port=args.port, log_level="info")

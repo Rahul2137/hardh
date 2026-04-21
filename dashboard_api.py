@@ -25,10 +25,14 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 from config import config
+from integrations.google_sheets import GoogleSheetsClient
 
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Parent Outreach Dashboard", version="1.0.0")
+
+# Initialize Google Sheets client
+sheets_client = GoogleSheetsClient()
 
 # CORS for local dev
 app.add_middleware(
@@ -49,15 +53,13 @@ active_jobs: dict[str, str] = {}  # student_id -> status
 
 
 def load_students() -> list[dict]:
-    """Load students from JSON data store."""
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+    """Load students from Google Sheets."""
+    return sheets_client.get_all_students()
 
 
 def save_students(students: list[dict]):
-    """Save students back to JSON data store."""
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(students, f, indent=2, ensure_ascii=False)
+    """Save students back to Google Sheets."""
+    sheets_client.save_students(students)
 
 
 def get_missing_fields(student: dict) -> list[str]:
